@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SignedIn, SignedOut } from "@clerk/nextjs";
+import RequireAuth from "@/components/auth/RequireAuth";
 
 export default function Home() {
   return (
@@ -13,28 +13,31 @@ export default function Home() {
       </p>
 
       <div className="mt-10 flex gap-4">
-        <SignedOut>
-          <Link
-            href="/sign-up"
-            className="rounded-lg bg-indigo-600 px-6 py-3 font-medium text-white shadow-md transition hover:bg-indigo-700"
-          >
-            Get Started
-          </Link>
-          <Link
-            href="/sign-in"
-            className="rounded-lg border border-slate-300 bg-white px-6 py-3 font-medium text-slate-700 shadow-sm transition hover:bg-slate-50"
-          >
-            Sign In
-          </Link>
-        </SignedOut>
-        <SignedIn>
+        <RequireAuth
+          fallback={
+            <>
+              <Link
+                href="/sign-up"
+                className="rounded-lg bg-indigo-600 px-6 py-3 font-medium text-white shadow-md transition hover:bg-indigo-700"
+              >
+                Get Started
+              </Link>
+              <Link
+                href="/sign-in"
+                className="rounded-lg border border-slate-300 bg-white px-6 py-3 font-medium text-slate-700 shadow-sm transition hover:bg-slate-50"
+              >
+                Sign In
+              </Link>
+            </>
+          }
+        >
           <Link
             href="/dashboard"
             className="rounded-lg bg-indigo-600 px-6 py-3 font-medium text-white shadow-md transition hover:bg-indigo-700"
           >
             Go to Dashboard
           </Link>
-        </SignedIn>
+        </RequireAuth>
       </div>
 
       <div className="mt-20 grid w-full max-w-4xl gap-6 sm:grid-cols-3">

@@ -1,11 +1,7 @@
 import Link from "next/link";
-import {
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  SignUpButton,
-  UserButton,
-} from "@clerk/nextjs";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
+import UserMenu from "@/components/user/UserMenu";
+import { SignInCTA, SignUpCTA } from "@/components/auth/AuthButtons";
 
 export default function Navbar() {
   return (
@@ -26,26 +22,12 @@ export default function Navbar() {
             >
               Dashboard
             </Link>
-            <UserButton
-              appearance={{
-                elements: {
-                  avatarBox: "h-9 w-9",
-                },
-              }}
-            />
+            <UserMenu />
           </SignedIn>
 
           <SignedOut>
-            <SignInButton mode="modal">
-              <button className="text-sm font-medium text-slate-700 hover:text-indigo-600">
-                Sign In
-              </button>
-            </SignInButton>
-            <SignUpButton mode="modal">
-              <button className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700">
-                Sign Up
-              </button>
-            </SignUpButton>
+            <SignInCTA />
+            <SignUpCTA />
           </SignedOut>
         </div>
       </nav>

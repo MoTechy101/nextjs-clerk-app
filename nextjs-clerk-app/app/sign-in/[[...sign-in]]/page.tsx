@@ -1,9 +1,5 @@
-import { SignIn } from "@clerk/nextjs";
+import AuthCard from "@/components/auth/AuthCard";
 
 export default function SignInPage() {
-  return (
-    <div className="flex min-h-[70vh] items-center justify-center">
-      <SignIn />
-    </div>
-  );
+  return <AuthCard mode="sign-in" />;
 }
